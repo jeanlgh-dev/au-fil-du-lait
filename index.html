@@ -4,115 +4,162 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Au Fil du Lait — Ferme locale</title>
+<title>Au Fil du Lait — Ferme à Thiaumont</title>
 
 <style>
 :root{
   --green:#1f3d2b;
-  --green-light:#2f5a3f;
-  --bg:#f6f5f1;
-  --text:#2b2b2b;
-  --muted:#777;
+  --green-soft:#2f5a3f;
+  --bg:#f7f6f2;
+  --card:#ffffff;
+  --text:#2a2a2a;
+  --muted:#6f6f6f;
+  --radius:16px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
-  font-family:Arial, sans-serif;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background:var(--bg);
   color:var(--text);
+  font-size:18px;
+  line-height:1.6;
 }
 
 /* NAV */
 nav{
   position:fixed;
-  width:100%;
-  padding:1.5rem 2rem;
+  top:0;left:0;right:0;
+  background:rgba(247,246,242,.95);
   display:flex;
   justify-content:space-between;
-  background:rgba(246,245,241,0.9);
+  align-items:center;
+  padding:1.2rem 2rem;
+  z-index:100;
 }
 
-nav h1{
+nav strong{
   color:var(--green);
-  font-size:1.2rem;
+  font-size:1.3rem;
 }
 
 nav a{
-  margin-left:2rem;
+  margin-left:1.8rem;
   text-decoration:none;
   color:var(--text);
-  font-size:0.9rem;
+  font-size:0.95rem;
 }
+
+nav a:hover{color:var(--green)}
 
 /* HERO */
 .hero{
   height:90vh;
-  background:url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1600') center/cover;
+  background:
+    linear-gradient(rgba(31,61,43,.55),rgba(31,61,43,.55)),
+    url("images/hero.jpg") center/cover;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   color:white;
+  padding:2rem;
 }
 
-.hero h2{
+.hero h1{
   font-size:3rem;
 }
 
 .hero p{
   margin-top:1rem;
+  font-size:1.2rem;
 }
 
-/* SECTION */
-.section{
-  padding:5rem 2rem;
+/* SECTIONS */
+section{
   max-width:1100px;
-  margin:auto;
+  margin:0 auto;
+  padding:6rem 2rem;
 }
 
-.section h2{
+h2{
   color:var(--green);
+  font-size:2.2rem;
   margin-bottom:2rem;
 }
 
-/* PRODUITS */
-.grid{
+/* CARDS */
+.cards{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
   gap:2rem;
 }
 
 .card{
-  background:white;
-  padding:1.5rem;
-  border:1px solid #eee;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:2rem;
+  box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.card img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:1rem;
 }
 
 .card h3{
-  margin-bottom:0.5rem;
   color:var(--green);
+  margin-bottom:.5rem;
 }
 
-.card p{
-  font-size:0.9rem;
-  color:var(--muted);
+/* LISTE PRODUITS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:2rem;
+}
+
+.product{
+  background:white;
+  border-radius:var(--radius);
+  padding:2rem;
+  text-align:center;
+}
+
+.product span{
+  font-size:2rem;
+  display:block;
+  margin-bottom:.6rem;
+}
+
+/* INFOS */
+.info{
+  background:white;
+  border-radius:var(--radius);
+  padding:2rem;
+}
+
+/* MAP */
+.map{
+  margin-top:2rem;
+  border-radius:var(--radius);
+  overflow:hidden;
 }
 
 /* FOOTER */
 footer{
   background:var(--green);
   color:white;
+  padding:3rem 2rem;
   text-align:center;
-  padding:2rem;
+  margin-top:4rem;
 }
 
 @media(max-width:768px){
-  .grid{
-    grid-template-columns:1fr;
-  }
-  .hero h2{
-    font-size:2rem;
-  }
+  body{font-size:17px}
+  .hero h1{font-size:2.2rem}
 }
 </style>
 </head>
@@ -121,8 +168,9 @@ footer{
 
 <!-- NAV -->
 <nav>
-  <h1>Au Fil du Lait</h1>
+  <strong>Au Fil du Lait</strong>
   <div>
+    <a href="#ferme">La ferme</a>
     <a href="#produits">Produits</a>
     <a href="#horaires">Horaires</a>
     <a href="#contact">Contact</a>
@@ -130,63 +178,114 @@ footer{
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<header class="hero">
   <div>
-    <h2>Ferme locale<br>au Fil du Lait</h2>
-    <p>Produits fermiers — directement du producteur</p>
+    <h1>Ferme Au Fil du Lait</h1>
+    <p>Produits fermiers · Thiaumont · Circuit court</p>
+  </div>
+</header>
+
+<!-- QUI SOMMES-NOUS -->
+<section id="ferme">
+  <h2>Notre ferme</h2>
+  <p>
+    Située à <strong>Thiaumont</strong>, notre ferme familiale élève des
+    <strong>vaches, brebis et poules</strong> dans le respect de la nature.
+    Nous transformons une partie de notre production directement à la ferme
+    pour vous proposer des produits simples, sains et locaux.
+  </p>
+
+  <div class="cards" style="margin-top:3rem">
+    <div class="card">
+      <img src="images/vaches.jpg" alt="Vaches">
+      <h3>Vaches & brebis</h3>
+      <p>Alimentation naturelle à base d’herbe et de foin.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/poules.jpg" alt="Poules">
+      <h3>Poules plein air</h3>
+      <p>Œufs frais collectés chaque matin.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/legumes.jpg" alt="Légumes">
+      <h3>Potager</h3>
+      <p>Légumes de saison et fraises en été.</p>
+    </div>
   </div>
 </section>
 
-<!-- HISTOIRE -->
-<section class="section">
-  <h2>Notre ferme</h2>
-  <p>
-    Nous élevons des vaches, des brebis et des poules dans le respect de la nature.
-    Nous produisons des fromages, des œufs et des produits locaux de qualité.
-    Nous cultivons également des légumes et des fraises de saison.
-  </p>
-</section>
-
 <!-- PRODUITS -->
-<section class="section" id="produits">
+<section id="produits">
   <h2>Nos produits</h2>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Produits laitiers</h3>
-      <p>Lait, fromages, yaourts artisanaux</p>
+  <div class="products">
+    <div class="product">
+      <span>🥛</span>
+      <strong>Lait & fromages</strong>
+      <p>Produits laitiers artisanaux</p>
     </div>
 
-    <div class="card">
-      <h3>Œufs</h3>
-      <p>Œufs frais de poules élevées en plein air</p>
+    <div class="product">
+      <span>🥚</span>
+      <strong>Œufs</strong>
+      <p>Poules élevées en plein air</p>
     </div>
 
-    <div class="card">
-      <h3>Légumes & fruits</h3>
-      <p>Légumes de saison et fraises locales</p>
+    <div class="product">
+      <span>🐑</span>
+      <strong>Produits de brebis</strong>
+      <p>Fromages & yaourts</p>
+    </div>
+
+    <div class="product">
+      <span>🥕</span>
+      <strong>Légumes</strong>
+      <p>Production de saison</p>
+    </div>
+
+    <div class="product">
+      <span>🍓</span>
+      <strong>Fraises</strong>
+      <p>Disponible au printemps & été</p>
     </div>
   </div>
 </section>
 
 <!-- HORAIRES -->
-<section class="section" id="horaires">
+<section id="horaires">
   <h2>Horaires</h2>
-  <p>Mercredi : 16h - 19h</p>
-  <p>Samedi : 15h - 18h</p>
+  <div class="info">
+    <p><strong>Magasin à la ferme</strong></p>
+    <p>Mercredi : 16h – 19h</p>
+    <p>Samedi : 15h – 18h</p>
+    <p style="margin-top:1rem;color:var(--muted)">
+      Ouvert de mai à octobre
+    </p>
+  </div>
 </section>
 
 <!-- CONTACT -->
-<section class="section" id="contact">
-  <h2>Contact</h2>
-  <p>📍 Rue du Marquisat 325, 6717</p>
-  <p>📞 0499 60 17 96</p>
-  <p>📧 info@aufildulait.be</p>
+<section id="contact">
+  <h2>Nous contacter</h2>
+
+  <div class="info">
+    <p>📍 Rue du Marquisat 325, 6717 Thiaumont</p>
+    <p>📞 0499 60 17 96</p>
+    <p>✉️ info@aufildulait.be</p>
+
+    <div class="map">
+      <iframe
+        src="https://www.google.com/maps?q=Thiaumont%20Belgique&output=embed"
+        width="100%" height="300" style="border:0" loading="lazy">
+      </iframe>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2025 Au Fil du Lait — Ferme locale</p>
+  <p>© 2025 — Au Fil du Lait · Ferme locale à Thiaumont</p>
 </footer>
 
 </body>
